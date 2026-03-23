@@ -7,16 +7,16 @@ from pathlib import Path
 
 class Settings(BaseSettings):
     # MongoDB
-    MONGO_URL: str = "mongodb+srv://database2:database2@cluster0.p4ztr4z.mongodb.net/?appName=Cluster0"
+    MONGO_URL: str
     DB_NAME: str = "ai_dept_hub"
 
     # JWT
-    SECRET_KEY: str = "super-secret-key-change-in-production"
+    SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
 
     # AI
-    GEMINI_API_KEY: str = "AIzaSyA3NxsxdGBXwoXGCrc3Ayprtt4QZcOKBbg"
+    GEMINI_API_KEY: str
 
     # Storage
     UPLOAD_DIR: str = "uploads"
