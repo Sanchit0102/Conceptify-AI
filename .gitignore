@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+dist/
+build/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+env/
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local data (transient)
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/vector_store/
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+.gemini/
+.agents/
+.agent/
+_agents/
+_agent/
+brain/
