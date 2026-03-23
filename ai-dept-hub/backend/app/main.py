@@ -19,7 +19,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "http://localhost:3000",
+        "https://conceptifyai.vercel.app",
         "https://dorotha-cylindraceous-unorthographically.ngrok-free.dev"
     ],
     allow_credentials=True,
