@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-const API_BASE = 'https://cover-2vdr.onrender.com';
+const API_BASE = 'https://mediainfobot-h1ji.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE,
