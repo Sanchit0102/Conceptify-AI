@@ -128,10 +128,16 @@ async def conceptify_assist(file: UploadFile = File(...), current_user: dict = D
     if not llm:
         return {"error": "AI assistant unavailable."}
 
-    prompt = f"""You are an expert at analyzing exam question papers. 
-Extract all distinct questions from the following text. 
-Return them ONLY as a JSON list of strings. No numbering, no extra text.
-If a question has sub-parts, combine them into one comprehensive question string.
+    prompt = f"""You are an expert at analyzing exam question papers.
+Your job is to extract ONLY the actual exam questions from the text below.
+
+RULES:
+- Extract ONLY questions that a student needs to answer.
+- IGNORE headers, instructions, marks allocation, roll number fields, exam titles, and university names.
+- If a question has sub-parts (a, b, c), combine them into ONE comprehensive question string.
+- Return ONLY a JSON array of strings. No numbering, no extra text, no explanation.
+
+EXAMPLE OUTPUT: ["Explain the architecture of CNN", "Compare RNN and LSTM with a diagram"]
 
 TEXT FROM QUESTION PAPER:
 {raw_text}
@@ -160,7 +166,7 @@ JSON LIST:"""
     # 4. Use asyncio.gather to run RAG calls in parallel
     async def process_question(idx, q):
         try:
-            answer_data = await answer_question(q)
+            answer_data = await answer_question(q, resource_only=True)
             return {
                 "number": idx,
                 "question": q,
