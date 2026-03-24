@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiHome, FiBook, FiCpu, FiMessageCircle, FiCode, FiBarChart2, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
+import { FiHome, FiBook, FiCpu, FiMessageCircle, FiFileText, FiCode, FiBarChart2, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +18,7 @@ export default function Navbar() {
     { to: '/knowledge', label: 'Knowledge Hub', icon: <FiBook /> },
     { to: '/lab', label: 'Lab Resources', icon: <FiCpu /> },
     { to: '/chat', label: 'AI Assistant', icon: <FiMessageCircle /> },
+    { to: '/assist', label: 'Conceptify Assist', icon: <FiFileText /> },
     { to: '/debug', label: 'Debug Helper', icon: <FiCode /> },
   ];
 

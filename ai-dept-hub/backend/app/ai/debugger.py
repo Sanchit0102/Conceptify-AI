@@ -15,14 +15,23 @@ async def debug_code(code: str, language: str = "python") -> dict:
         }
 
     prompt = f"""You are an expert programming instructor and debugger.
-Analyze the following {language} code thoroughly.
-IMPORTANT: Explain everything as simply and clearly as possible. Assume the user is a beginner student. Avoid complex jargon where possible, and break down technical concepts into easy-to-understand terms.
+Analyze the following {language} code thoroughly and provide a fixed version.
+
+FORMATTING RULES FOR CORRECTED CODE:
+1. Include **simple and basic comments** directly in the code to explain the logic.
+2. IMPORTANT: Append `// @FIX` (or `# @FIX` for Python) strictly to the end of any line that was corrected, changed, or added.
+3. Keep the code clean and well-indented.
+
+FORMATTING RULES FOR EXPLANATION:
+1. Provide **simple reasoning** for the fixes.
+2. Avoid deep details or long descriptions.
+3. Use a clear, bulleted list.
 
 Respond in EXACTLY this format (use these exact headers):
 
 ## ERRORS FOUND
-- List each error or issue found (syntax, logic, runtime)
-- If no errors, say "No errors found"
+- List each error or issue found (syntax, logic, runtime).
+- If no errors, say "No errors found".
 
 ## CORRECTED CODE
 ```{language}
@@ -30,8 +39,7 @@ Respond in EXACTLY this format (use these exact headers):
 ```
 
 ## EXPLANATION
-Explain each fix you made and why. Be educational and clear.
-Mention any best practices or common mistakes related to the issues found.
+- Simple, concise reasoning for each fix.
 
 CODE TO ANALYZE:
 ```{language}

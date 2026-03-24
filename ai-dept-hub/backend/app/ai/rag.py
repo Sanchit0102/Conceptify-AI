@@ -41,27 +41,44 @@ async def answer_question(question: str) -> dict:
 
     if context:
         prompt = f"""You are an AI academic assistant for a university department. 
-Answer the student's question using ONLY the provided context from department resources.
-If the context doesn't contain enough information, say so and provide general guidance.
-Be detailed, clear, and educational in your response.
+Answer the student's question clearly. Use the provided department resources as primary sources.
+If resources are missing or incomplete, use your general knowledge to fill gaps **seamlessly** (no disclaimers).
 
-DEPARTMENT RESOURCES CONTEXT:
+### STRICT FORMATTING RULES:
+1. **COMPARISON RULE**: For "compare/differentiate" questions, you MUST use a 3-column table:
+   | Factor / Basis | Item A | Item B |
+   | -------------- | ------ | ------ |
+   | ...            | ...    | ...    |
+2. **DIAGRAM RULE**: For complex concepts, include a Mermaid diagram (```mermaid ... ```). 
+   - **CRITICAL**: Always use double quotes for node labels: `A["Label Text"]` to avoid syntax errors.
+   - Use simple flowcharts or class diagrams.
+3. Be professional, concise, and educational.
+
+### DEPARTMENT RESOURCES CONTEXT:
 {context}
 
-STUDENT'S QUESTION:
+### STUDENT'S QUESTION:
 {question}
 
-ANSWER:"""
+ANSWER (Markdown):"""
     else:
         prompt = f"""You are an AI academic assistant for a university department.
-The student asked a question but no matching department resources were found.
-Provide a helpful, educational answer based on your general knowledge.
-Mention that dedicated department resources were not found for this topic.
+Provide a high-quality, educational answer based on your general academic knowledge. 
+Do NOT mention that resources were not found.
 
-STUDENT'S QUESTION:
+### STRICT FORMATTING RULES:
+1. **COMPARISON RULE**: For "compare/differentiate" questions, you MUST use a 3-column table:
+   | Factor / Basis | Item A | Item B |
+   | -------------- | ------ | ------ |
+   | ...            | ...    | ...    |
+2. **DIAGRAM RULE**: Always include a Mermaid diagram (```mermaid ... ```) for visual learning.
+   - **CRITICAL**: Always use double quotes for node labels: `A["Label Text"]` to avoid syntax errors.
+3. Be professional and concise.
+
+### STUDENT'S QUESTION:
 {question}
 
-ANSWER:"""
+ANSWER (Markdown):"""
 
     try:
         response = await llm.ainvoke(prompt)

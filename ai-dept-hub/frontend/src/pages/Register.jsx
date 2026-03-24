@@ -22,10 +22,10 @@ export default function Register() {
         name,
         email,
         password,
-        role: 'student', // Assuming role is always student for registration
-        department: 'AI & DS', // Assuming department is always AI & DS
-        className,
-        rollNo,
+        role: 'student',
+        department: 'AI & DS',
+        class_name: className,
+        roll_number: rollNo,
       });
       login(res.data.access_token, res.data.user);
       toast.success('Account created successfully!');

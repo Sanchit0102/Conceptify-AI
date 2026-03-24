@@ -8,6 +8,7 @@ export default defineConfig({
     host: true,
 
     allowedHosts: [
+      'localhost:5173',
       'dorotha-cylindraceous-unorthographically.ngrok-free.dev'
     ],
 

@@ -39,6 +39,10 @@ export const summarizeResource = (resource_id, text) =>
   api.post('/ai/summarize', { resource_id, text });
 export const debugCode = (code, language) =>
   api.post('/ai/debug', { code, language });
+export const postAssist = (formData) => api.post('/ai/assist', formData, {
+  headers: { 'Content-Type': 'multipart/form-data' },
+  timeout: 60000 // 60 seconds timeout for OCR + LLM
+});
 
 // Search
 export const unifiedSearch = (q) => api.get('/search', { params: { q } });

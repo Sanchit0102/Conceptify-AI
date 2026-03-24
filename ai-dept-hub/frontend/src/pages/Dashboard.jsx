@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import ResourceCard from '../components/ResourceCard';
 import { fetchResources, unifiedSearch } from '../api';
 import { useAuth } from '../context/AuthContext';
-import { FiBook, FiCpu, FiMessageCircle, FiCode, FiArrowRight } from 'react-icons/fi';
+import { FiBook, FiCpu, FiMessageCircle, FiCode, FiArrowRight, FiFileText } from 'react-icons/fi';
 
 export default function Dashboard() {
   const [resources, setResources] = useState([]);
@@ -38,6 +38,7 @@ export default function Dashboard() {
     { icon: <FiBook />, label: 'Knowledge Hub', desc: 'Browse notes & papers', path: '/knowledge', gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' },
     { icon: <FiCpu />, label: 'Lab Resources', desc: 'Experiments & code', path: '/lab', gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)' },
     { icon: <FiMessageCircle />, label: 'AI Assistant', desc: 'Ask anything', path: '/chat', gradient: 'linear-gradient(135deg, #34d399, #059669)' },
+    { icon: <FiFileText />, label: 'Conceptify Assist', desc: 'Papers to Answers', path: '/assist', gradient: 'linear-gradient(135deg, #f97316, #ea580c)' },
     { icon: <FiCode />, label: 'Debug Helper', desc: 'Fix your code', path: '/debug', gradient: 'linear-gradient(135deg, #f472b6, #db2777)' },
   ];
 
@@ -53,7 +54,7 @@ export default function Dashboard() {
       </div>
 
       {/* Quick Access Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 16, marginBottom: 40 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16, marginBottom: 40 }}>
         {quickLinks.map((item) => (
           <div
             key={item.path}

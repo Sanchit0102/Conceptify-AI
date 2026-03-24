@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import KnowledgeHub from './pages/KnowledgeHub';
 import LabHub from './pages/LabHub';
 import AiChat from './pages/AiChat';
+import ConceptifyAssist from './pages/ConceptifyAssist';
 import DebugHelper from './pages/DebugHelper';
 import FacultyDashboard from './pages/FacultyDashboard';
 
@@ -37,6 +38,7 @@ export default function App() {
               <Route path="/knowledge" element={<ProtectedRoute><KnowledgeHub /></ProtectedRoute>} />
               <Route path="/lab" element={<ProtectedRoute><LabHub /></ProtectedRoute>} />
               <Route path="/chat" element={<ProtectedRoute><AiChat /></ProtectedRoute>} />
+              <Route path="/assist" element={<ProtectedRoute><ConceptifyAssist /></ProtectedRoute>} />
               <Route path="/debug" element={<ProtectedRoute><DebugHelper /></ProtectedRoute>} />
               <Route path="/faculty" element={<FacultyRoute><FacultyDashboard /></FacultyRoute>} />
               <Route path="*" element={<Navigate to="/" />} />

@@ -66,9 +66,9 @@ export default function DebugHelper() {
       <div className="code-editor-container">
         {/* Input Panel */}
         <div className="code-panel">
-          <div className="code-panel-header">
-            <span>📝 Your Code</span>
-            <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{language.toUpperCase()}</span>
+          <div className="code-panel-header" style={{ background: 'rgba(255, 255, 255, 0.15)', borderBottom: '2px solid var(--violet-500)' }}>
+            <span style={{ fontWeight: 800, fontSize: 16 }}>📝 Your Code</span>
+            <span style={{ fontSize: 12, color: 'var(--text-bright)', opacity: 0.8 }}>{language.toUpperCase()}</span>
           </div>
           <textarea
             id="code-input"
@@ -81,13 +81,19 @@ export default function DebugHelper() {
         </div>
 
         {/* Output Panel */}
-        <div className="code-panel">
-          <div className="code-panel-header">
-            <span>✅ Corrected Code</span>
+          <div className="code-panel">
+          <div className="code-panel-header" style={{ background: 'rgba(255, 255, 255, 0.15)', borderBottom: '2px solid var(--green-500)' }}>
+            <span style={{ fontWeight: 800, fontSize: 16 }}>✅ Corrected Code</span>
+            <span style={{ fontSize: 10, color: 'var(--green-400)', textTransform: 'uppercase', letterSpacing: 1 }}>✨ Fix Glow Active</span>
           </div>
           {result?.corrected_code ? (
-            <div style={{ flex: 1, overflow: 'auto' }}>
-              <CodeViewer code={result.corrected_code} language={language} />
+            <div style={{ flex: 1, overflow: 'auto', background: 'rgba(5, 50, 40, 0.4)', borderRadius: 'var(--radius-md)', border: '1px solid rgba(16, 185, 129, 0.3)', boxShadow: '0 0 15px rgba(16, 185, 129, 0.15)' }}>
+              <CodeViewer 
+                code={result.corrected_code} 
+                language={language} 
+                customBg="transparent" 
+                highlightFixes={true}
+              />
             </div>
           ) : (
             <div className="code-textarea" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: 14 }}>
