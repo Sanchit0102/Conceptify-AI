@@ -11,6 +11,7 @@ async def create_resource(
     subject: str,
     topic: str,
     description: str,
+    file_path: str,
     file_type: str,
     uploaded_by: str,
     ai_summary: str = "",
