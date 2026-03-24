@@ -3,10 +3,8 @@ uvicorn[standard]==0.30.0
 motor==3.5.0
 pymongo==4.8.0
 python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-pydantic[email]
-python-multipart==0.0.9
 pydantic[email]==2.9.0
+python-multipart==0.0.9
 pytesseract==0.3.13
 Pillow==10.4.0
 pydantic-settings==2.5.0
@@ -14,7 +12,6 @@ langchain==0.3.0
 langchain-google-genai==2.0.0
 langchain-community==0.3.0
 chromadb==0.5.5
-sentence-transformers==3.0.0
 pdfminer.six==20231228
 tiktoken==0.7.0
 python-dotenv==1.0.1
