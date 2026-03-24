@@ -84,22 +84,23 @@ export default function Dashboard() {
             <h2 style={{ fontSize: 20, fontWeight: 700 }}>Search Results ({searchResults.length})</h2>
             <button className="btn btn-ghost btn-sm" onClick={() => setSearchResults(null)}>Clear</button>
           </div>
-          {searchResults.length > 0 ? (
+        {searchResults.length > 0 ? (
             <div className="resource-grid">
               {searchResults.map((item, i) => (
-                <div key={i} className="resource-card">
-                  <div className="card-header">
-                    <span className="card-title">{item.title}</span>
-                    <span className={`card-badge badge-${item.file_type === 'pdf' ? 'pdf' : item.file_type === 'code' ? 'code' : 'default'}`}>
-                      {item.search_type === 'semantic' ? '🧠 AI' : '📝 Text'}
-                    </span>
-                  </div>
-                  <div className="card-meta">
-                    <span className="card-meta-item">📚 {item.subject}</span>
-                    {item.topic && <span className="card-meta-item">📌 {item.topic}</span>}
-                  </div>
-                  <p className="card-desc">{item.snippet}</p>
-                </div>
+                <ResourceCard
+                  key={item.resource_id || i}
+                  resource={{
+                    id: item.resource_id,
+                    title: item.title,
+                    subject: item.subject,
+                    topic: item.topic,
+                    file_type: item.file_type,
+                    file_path: item.file_path,
+                    description: item.description || item.snippet,
+                    ai_summary: item.search_type === 'semantic' ? `🧠 AI Match (${Math.round((item.score || 0) * 100)}% relevant)` : '',
+                  }}
+                  onClick={() => navigate('/knowledge')}
+                />
               ))}
             </div>
           ) : (
