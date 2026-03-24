@@ -93,12 +93,33 @@ If resources are missing or incomplete, use your general knowledge to fill gaps 
 ANSWER (Markdown):"""
     else:
         if resource_only:
-            # Conceptify Assist with no matching resources
-            return {
-                "answer": "⚠️ No matching resources found in the department Knowledge Hub for this question. Please ask your faculty to upload relevant materials.",
-                "sources": [],
-                "context_used": False,
-            }
+            # Conceptify Assist: no matching resources — fall back to AI with disclaimer
+            prompt = f"""You are an AI academic assistant for a university department.
+Provide a high-quality, educational answer based on your general academic knowledge.
+
+### STRICT FORMATTING RULES:
+1. **COMPARISON RULE**: For "compare/differentiate" questions, you MUST use a 3-column table.
+2. **DIAGRAM RULE**: Include a Mermaid diagram if helpful. Always use double quotes for node labels.
+3. Be professional and concise.
+
+### STUDENT'S QUESTION:
+{question}
+
+ANSWER (Markdown):"""
+            try:
+                response = await llm.ainvoke(prompt)
+                ai_answer = response.content.strip()
+                return {
+                    "answer": f"⚠️ **Department resources not found. Using AI general knowledge:**\n\n{ai_answer}",
+                    "sources": [],
+                    "context_used": False,
+                }
+            except Exception as e:
+                return {
+                    "answer": f"Error generating answer: {str(e)}",
+                    "sources": [],
+                    "context_used": False,
+                }
         else:
             # AI Chat fallback to general knowledge
             prompt = f"""You are an AI academic assistant for a university department.
